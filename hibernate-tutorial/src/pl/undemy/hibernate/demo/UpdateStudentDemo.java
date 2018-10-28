@@ -23,21 +23,19 @@ public class UpdateStudentDemo {
 		Session session = factory.getCurrentSession();
 		
 		try {
-			Long studentId = 8L;
-			//use the session object to save Java object
-			log.info("Get student with id:" + studentId);
+			log.info("Update student wity email : zaneta@wp.pl");
 			session.beginTransaction();
-			
-			Student student = session.get(Student.class, studentId);
-		
+			session.createQuery("update Student set email='zaba@wp.pl' where email='zaneta@wp.pl'")
+					.executeUpdate();
+				
 			log.info("Update student....");
 			
-			student.setFirstName("Boss");
 			//start transaction
 			session.getTransaction().commit();
-			
+			log.info("Done");
 		} finally {
 			session.close();
+			factory.close();
 		}
 	}
 
