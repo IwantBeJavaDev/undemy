@@ -23,11 +23,11 @@ public class DeleteStudentDemo {
 		Session session = factory.getCurrentSession();
 		
 		try {
-			log.info("Delete student with id=8");
+			log.info("Delete student with query");
 			session.beginTransaction();
 			
-			Student student = session.get(Student.class, 8L);
-			session.delete(student);
+			session.createQuery("delete from Student where email='michal@wp.pl'")
+			.executeUpdate();
 			
 			//start transaction
 			session.getTransaction().commit();
