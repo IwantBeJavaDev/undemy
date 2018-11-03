@@ -24,7 +24,7 @@ public class CreateStudentDemo {
 			
 			//use the session object to save Java object
 			System.out.println("Create the studnet object");
-			Student student = new Student("Micha³", "Baraniak", "michal@wp.pl");
+			Student student = new Student("Micha³", "Baraniak", "michal@wp.pl", DateUtil.parseDate("23.05.1982"));
 			
 			//start transaction
 			session.beginTransaction();
@@ -37,7 +37,8 @@ public class CreateStudentDemo {
 			session.getTransaction().commit();
 			
 			System.err.println("Done");
-			
+		}catch (Exception e) {
+			e.printStackTrace();
 		} finally {
 			session.close();
 		}
