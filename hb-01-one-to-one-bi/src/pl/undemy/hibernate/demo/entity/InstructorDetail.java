@@ -11,30 +11,30 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="instructor_detail")
+@Table(name = "instructor_detail")
 public class InstructorDetail {
 
 	@Id
-	@Column(name="id_instructor_detail")
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="s_instructor_detail")
-	@SequenceGenerator(name="s_instructor_detail", allocationSize=1 )
+	@Column(name = "id_instructor_detail")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "s_instructor_detail")
+	@SequenceGenerator(name = "s_instructor_detail", allocationSize = 1)
 	private Long idInstructorDetail;
-	
-	@Column(name="youtube_channel")
+
+	@Column(name = "youtube_channel")
 	private String youtubeChannel;
-	
-	@Column(name="hobby")
+
+	@Column(name = "hobby")
 	private String hobby;
 
-	//References to instructor entity
-	@OneToOne(mappedBy="instructorDetail", cascade=CascadeType.ALL)
+	// References to instructor entity
+	@OneToOne(mappedBy = "instructorDetail", cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
+			CascadeType.REFRESH })
 	private Instructor instructor;
-	
+
 	public InstructorDetail() {
-	
+
 	}
-	
-	
+
 	public InstructorDetail(String youtubeChannel, String hobby) {
 		super();
 		this.youtubeChannel = youtubeChannel;
@@ -65,22 +65,18 @@ public class InstructorDetail {
 		this.hobby = hobby;
 	}
 
-
 	@Override
 	public String toString() {
 		return "InstructorDetail [idInstructorDetail=" + idInstructorDetail + ", youtubeChannel=" + youtubeChannel
 				+ ", hobby=" + hobby + "]";
 	}
 
-
 	public Instructor getInstructor() {
 		return instructor;
 	}
 
-
 	public void setInstructor(Instructor instructor) {
 		this.instructor = instructor;
 	}
-	
-	
+
 }
