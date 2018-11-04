@@ -24,13 +24,15 @@ public class DeleteBiIntructorDemo {
 		
 		try {
 			log.info("get instructor detail");
-			Long id = 2L;
+			Long id = 3L;
 			session.beginTransaction();
 			InstructorDetail instructorDetail = session.get(InstructorDetail.class, id);
 			log.info("instructor detail: " + instructorDetail); 
-			log.info("instructor : " + instructorDetail.getInstructor()); 
-			log.info("delete indtuctor..." ); 
 			
+			log.info("Remove the associated object reference, break bi-directional link" ); 
+			instructorDetail.setInstructor(null);
+			
+			log.info("Delete instructorDetail without instructor entity");
 			session.delete(instructorDetail);
 			
 			session.getTransaction().commit();
