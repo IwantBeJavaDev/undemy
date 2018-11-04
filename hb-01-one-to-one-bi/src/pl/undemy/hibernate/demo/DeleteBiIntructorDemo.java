@@ -30,7 +30,7 @@ public class DeleteBiIntructorDemo {
 			log.info("instructor detail: " + instructorDetail); 
 			
 			log.info("Remove the associated object reference, break bi-directional link" ); 
-			instructorDetail.setInstructor(null);
+			instructorDetail.getInstructor().setInstructorDetail(null);
 			
 			log.info("Delete instructorDetail without instructor entity");
 			session.delete(instructorDetail);
