@@ -30,8 +30,10 @@ public class EagerLazyDemo {
 			Instructor instructor = session.get(Instructor.class, idInstructor);
 			log.info("luv2code: " + instructor);
 			log.info("luv2code: " + instructor.getCourses());
-			
 			session.getTransaction().commit();
+			session.close();
+			log.info("Session closed");
+			log.info("luv2code: " + instructor.getCourses());
 
 			log.info("Done");
 		} catch (Exception e) {
