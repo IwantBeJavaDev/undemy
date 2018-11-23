@@ -28,4 +28,10 @@ public class CustomerServiceImpl implements CustomerService{
 		
 	}
 
+	@Override
+	@Transactional //I don't have to use begin end close transaction :-)
+	public Customer getCustomerById(Long idCustomer) {
+		return customerDao.getCustomerById(idCustomer);
+	}
+
 }

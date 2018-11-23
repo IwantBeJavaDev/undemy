@@ -34,12 +34,16 @@
 					<th>Action</th>
 				</tr>
 
-<!-- Used to open link with value -->
-				<c:url var="updateLink" value="/customer/showFormForUpdate">
-					<c:param name="customerId" value="${customer.idCustomer}"/>
-				</c:url>
+				
 				<!-- loop over and print our customer -->
 				<c:forEach var="localCustomer" items="${customers}">
+				
+					<!-- Used to open link with value -->
+				<c:url var="updateLink" value="/customer/showFormForUpdate">
+					<c:param name="customerId" value="${localCustomer.idCustomer}"/>
+				</c:url>
+				
+				
 					<tr>
 						<td>${localCustomer.firstName}</td>
 						<td>${localCustomer.lastName}</td>

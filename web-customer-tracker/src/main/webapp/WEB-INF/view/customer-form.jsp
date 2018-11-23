@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
@@ -25,6 +24,11 @@
 		<h3>Save Customer</h3>
 
 		<form:form action="saveCustomer" modelAttribute="customer" method="POST">
+		
+		<!-- need to associate this data with customer id. Do this to not lost idCustomer context -->
+		
+		<form:hidden path="id"/>
+		
 			<table>
 				<tbody>
 					<tr>

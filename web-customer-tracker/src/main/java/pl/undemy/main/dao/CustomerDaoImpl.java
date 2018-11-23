@@ -31,4 +31,10 @@ public class CustomerDaoImpl implements CustomerDao {
 		
 	}
 
+	@Override
+	public Customer getCustomerById(Long idCustomer) {
+		Session session = sessionFactory.getCurrentSession();
+		return session.get(Customer.class, idCustomer);
+	}
+
 }

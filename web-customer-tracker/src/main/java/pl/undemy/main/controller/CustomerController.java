@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import pl.undemy.main.entity.Customer;
 import pl.undemy.main.service.CustomerService;
@@ -47,5 +48,13 @@ public class CustomerController {
 		customerService.saveCustomer(customer);
 		
 		return "redirect:/customer/list";
+	}
+	
+	@GetMapping("/showFormForUpdate")
+	public String showFromForUpdate(@RequestParam("customerId") Long idCustomer, Model model) {
+		
+		Customer customer = customerService.getCustomerById(idCustomer);
+		model.addAttribute("customer", customer);
+		return "customer-form";
 	}
 }
