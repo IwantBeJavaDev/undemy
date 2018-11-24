@@ -1,6 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,6 +25,12 @@
 			onclick="window.location.href='showFormForAdd'; return false;" 
 			class="add-button"	
 		/>
+		
+		<form:form action="search" method="POST">
+			Search customer: <input type="text" name="searchText"/>
+			<input type="submit" value="Search" class="add-button"/>
+		</form:form>
+		
 		<div id="content">
 			<table>
 				<tr>
@@ -40,15 +46,24 @@
 				
 					<!-- Used to open link with value -->
 				<c:url var="updateLink" value="/customer/showFormForUpdate">
-					<c:param name="customerId" value="${localCustomer.idCustomer}"/>
+					<c:param name="idCustomer" value="${localCustomer.idCustomer}"/>
 				</c:url>
 				
+				
+				<c:url var="deleteLink" value="/customer/delete">
+					<c:param name="idCustomer" value="${localCustomer.idCustomer}"/>
+				</c:url>
 				
 					<tr>
 						<td>${localCustomer.firstName}</td>
 						<td>${localCustomer.lastName}</td>
 						<td>${localCustomer.email}</td>
-						<td> <a href="${updateLink}">Update</a></td>
+						<td> 
+							<a href="${updateLink}">Update</a>
+							|
+							<a href="${deleteLink}"
+							onclick="if (!(confirm('Are you sure you want delete this customer'))) return false" >Delete</a>
+						</td>
 					</tr>
 				</c:forEach>
 			</table>

@@ -10,4 +10,8 @@ public interface CustomerDao {
 	public void saveCustomer(Customer customer);
 
 	public Customer getCustomerById(Long idCustomer);
+
+	public void deleteCustomer(Long idCustomer);
+
+	public List<Customer> searchCustomers(String searchText);
 }

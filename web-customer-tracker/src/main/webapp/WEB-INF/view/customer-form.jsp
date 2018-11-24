@@ -27,7 +27,7 @@
 		
 		<!-- need to associate this data with customer id. Do this to not lost idCustomer context -->
 		
-		<form:hidden path="id"/>
+		<form:hidden path="idCustomer"/>
 		
 			<table>
 				<tbody>

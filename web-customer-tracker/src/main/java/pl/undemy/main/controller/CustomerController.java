@@ -51,10 +51,26 @@ public class CustomerController {
 	}
 	
 	@GetMapping("/showFormForUpdate")
-	public String showFromForUpdate(@RequestParam("customerId") Long idCustomer, Model model) {
+	public String showFromForUpdate(@RequestParam("idCustomer") Long idCustomer, Model model) {
 		
 		Customer customer = customerService.getCustomerById(idCustomer);
 		model.addAttribute("customer", customer);
 		return "customer-form";
+	}
+	
+	@GetMapping("/delete")
+	public String deleteCustomer(@RequestParam("idCustomer") Long idCustoemr) {
+		customerService.deleteCustomer(idCustoemr);
+		return "redirect:/customer/list";
+	}
+	
+	
+	@PostMapping("/search")
+	public String searchCustomer(@RequestParam("searchText") String searchText, Model model) {
+		
+		List<Customer> customerList = customerService.searchCustomers(searchText);
+		model.addAttribute("customers", customerList);
+		
+		return "list-customers";
 	}
 }
