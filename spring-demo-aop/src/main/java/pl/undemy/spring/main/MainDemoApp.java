@@ -12,10 +12,13 @@ public class MainDemoApp {
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(DemoConfig.class);
 		
 		// get the bean from spring container
+		Account account = new Account();
+		account.setLevel("1");
+		account.setName("Test");
 		AccountDao accountDao = context.getBean(AccountDao.class);
 		MembershipDao membershipDao = context.getBean(MembershipDao.class);
 		//call the business method
-		accountDao.addAccount();
+		accountDao.addAccount(account);
 		membershipDao.addSilliMember();
 		//Close context
 		
