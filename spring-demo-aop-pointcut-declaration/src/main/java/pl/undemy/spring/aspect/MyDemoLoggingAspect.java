@@ -9,10 +9,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class MyDemoLoggingAspect {
 
+	//declare pointcut for parameter from current package, and more parameter any type
+	@Pointcut("execution (* pl.undemy.spring.dao.*.*(..))") 
+	private void forDaoPackage() {};
 	
-	@Pointcut("execution (* pl.undemy.spring.dao.*.*(..))")
-
-	@Before("execution (* pl.undemy.spring.dao.*.*(pl.undemy.spring.main.Account, ..))") //declare pointcut for parameter from current package, and more parameter any type
+	@Before("forDaoPackage()") 
 	public void beforeAddAccountAdvice() {
 		System.out.println("\n=====>>>>> Executing @Before advice on method");
 

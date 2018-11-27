@@ -20,6 +20,7 @@ public class MainDemoApp {
 		//call the business method
 		accountDao.addAccount(account);
 		membershipDao.addSilliMember();
+		membershipDao.goToSleep();
 		//Close context
 		
 		context.close();
