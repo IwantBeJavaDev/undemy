@@ -17,7 +17,8 @@ public class MyDemoLoggingAspect {
 //	@Before("execution (public void add*())") //declare pointcut for any method name stat add I using wildcards
 //	@Before("execution (* add*())") //declare pointcut for any method name start "add" I using wildcards. Modifier doesn't matter
 //	@Before("execution (* addAccount(..))") //declare pointcut for any parameter
-	@Before("execution (* pl.undemy.spring.dao.*.*(pl.undemy.spring.main.Account))") //declare pointcut for parameter from current package
+	//@Before("execution (* pl.undemy.spring.dao.*.*(pl.undemy.spring.main.Account))") //declare pointcut for parameter from current package
+	@Before("execution (* pl.undemy.spring.dao.*.*(pl.undemy.spring.main.Account, ..))") //declare pointcut for parameter from current package, and more parameter any type
 	public void beforeAddAccountAdvice() {
 		System.out.println("\n=====>>>>> Executing @Before advice on method");
 
