@@ -13,14 +13,20 @@ public class MainDemoApp {
 		
 		// get the bean from spring container
 		Account account = new Account();
-		account.setLevel("1");
-		account.setName("Test");
+		
 		AccountDao accountDao = context.getBean(AccountDao.class);
 		MembershipDao membershipDao = context.getBean(MembershipDao.class);
 		//call the business method
 		accountDao.addAccount(account);
 		membershipDao.addSilliMember();
 		membershipDao.goToSleep();
+		
+		
+		accountDao.setName("foobar");
+		accountDao.setServiceCode("silver");
+		
+		accountDao.getName();
+		accountDao.getServiceCode();
 		//Close context
 		
 		context.close();
