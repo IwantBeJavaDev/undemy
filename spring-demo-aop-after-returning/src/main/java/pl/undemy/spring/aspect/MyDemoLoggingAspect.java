@@ -30,8 +30,20 @@ public class MyDemoLoggingAspect {
 		System.out.println("\n=====> @AfterReturning method: " + method);
 		//print out the results of the method call
 		System.out.println("\n=====> result is " + result);
+		
+		//let's post-process the data ... let's modify it
+		convertAccountNameToUpperCase(result);
+		System.out.println("\n=====> modify result is " + result);
 	}
 	
+	private void convertAccountNameToUpperCase(List<Account> result) {
+		for (Account account : result) {
+			String upperName = account.getName().toUpperCase();
+			account.setName(upperName);
+		}
+		
+	}
+
 	//Using joinpoint to get access to method signature
 	@Before("pl.undemy.spring.aspect.AopExpressions.forDaoPackageNoGetterAndSetter()")
 	public void beforeAddAccountAdvice(JoinPoint joinPoint) {
