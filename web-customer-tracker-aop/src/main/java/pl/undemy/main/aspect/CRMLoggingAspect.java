@@ -3,6 +3,7 @@ package pl.undemy.main.aspect;
 import java.util.logging.Logger;
 
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
@@ -40,5 +41,17 @@ public class CRMLoggingAspect {
 		}
 	}
 	
-	//ad @AfterReturnig advice
+	//add @AfterReturnig advice
+	@AfterReturning(
+			pointcut = ("forAppFlow()"),
+			returning = "result"
+			)
+	public void afterReturning(JoinPoint joinPoint, Object result) {
+		String name = joinPoint.getSignature().getName();
+		log.info("=====> @@AfterReturning method called: " + name);
+		
+		
+		log.info("------> result:" + result);
+		
+	}
 }
