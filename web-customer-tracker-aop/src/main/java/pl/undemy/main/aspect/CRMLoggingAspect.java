@@ -15,7 +15,7 @@ public class CRMLoggingAspect {
 	//setup logger
 	private Logger log = Logger.getLogger(getClass().getName()); 
 	//setup pointcut
-	@Pointcut("execution ( * pl.undemy.main.cotroller.*.*(..))")
+	@Pointcut("execution ( * pl.undemy.main.controller.*.*(..))")
 	private void forControllerPackage() {}
 	
 	@Pointcut("execution ( * pl.undemy.main.dao.*.*(..))")
@@ -32,6 +32,12 @@ public class CRMLoggingAspect {
 	public void before(JoinPoint joinPoint) {
 		String name = joinPoint.getSignature().getName();
 		log.info("=====> @Before method called: " + name);
+		
+		
+		Object[] args = joinPoint.getArgs();
+		for (Object object : args) {
+			log.info("-----> Arguments: " + object);
+		}
 	}
 	
 	//ad @AfterReturnig advice
