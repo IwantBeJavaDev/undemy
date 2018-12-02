@@ -34,8 +34,9 @@ public class MyDemoLoggingAspect {
 		try {
 			result = proceedingJoinPoint.proceed();
 		} catch (Exception e) {
-			log.warning(e.getMessage());
-			result = "Major accident! But on worries, your private AOP helicopter is on the way";
+			log.warning("Major accident! But on worries, your private AOP helicopter is on the way");
+			//rethrow the exception
+			throw e;
 		}
 		
 		long end = System.currentTimeMillis();
